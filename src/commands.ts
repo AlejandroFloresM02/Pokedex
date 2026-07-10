@@ -10,6 +10,10 @@ export function getCommands(): Record<string, CLICommand> {
       description: "Exit the Pokedex",
       callback: commandExit,
     },
-    // cad add more commands here
+    help: {
+      name: "help",
+      description: "Displays a help message",
+      callback: commandHelp,
+    },
   };
 }
