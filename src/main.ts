@@ -1,7 +1,7 @@
-import { startRepl } from "./repl.js";
+import { startREPL } from "./repl.js";
 
 function main() {
-  startRepl();
+  startREPL();
 }
 
 main();
