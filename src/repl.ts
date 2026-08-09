@@ -1,7 +1,7 @@
 import { createInterface } from "readline";
 import { type State } from "./state.js";
 
-export function startREPL(state: State) {
+export async function startREPL(state: State) {
   const rl = state.readline
   rl.prompt();
 
@@ -25,7 +25,7 @@ export function startREPL(state: State) {
     }
 
     try {
-      cmd.callback(state);
+      await cmd.callback(state);
     } catch (e) {
       console.log(e);
     }
@@ -36,7 +36,7 @@ export function startREPL(state: State) {
 
 export function cleanInput(input: string): string[] {
   return input
-    .toLocaleLowerCase()
+    .toLowerCase()
     .trim()
     .split(" ")
     .filter((word) => word !== "");
