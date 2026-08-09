@@ -1,9 +1,7 @@
 import { createInterface, type Interface } from "readline";
-import { commandExit } from "./command_exit.js";
-import { commandHelp } from "./command_help.js";
-import { commandMap } from "./command_map.js";
 import { PokeAPI } from "./pokeapi.js";
-import { commandMapb } from "./command_mapb.js";
+import { getCommands } from "./commands.js";
+
 export type CLICommand = {
   name: string;
   description: string;
@@ -25,35 +23,12 @@ export function initState(): State {
     prompt: "Pokedex > ",
   });
 
-  const commands = {
-    exit: {
-      name: "exit",
-      description: "Exit the Pokedex",
-      callback: commandExit,
-    },
-    help: {
-      name: "help",
-      description: "Displays a help message",
-      callback: commandHelp,
-    },
-    map: {
-      name: "map",
-      description: "Displays the location map",
-      callback: commandMap,
-    },
-    mapb: {
-      name: "mapb",
-      description: "Displays the previos location map",
-      callback: commandMapb,
-    }
-  };
-  const pokeAPI = new PokeAPI();
-  const state: State = {
+  return {
     readline: rl,
-    commands: commands,
-    pokeAPI: pokeAPI,
+    commands: getCommands(),
+    pokeAPI: new PokeAPI(),
     prevLocationsURL: null,
     nextLocationURL: undefined,
   };
-  return state;
+
 }
