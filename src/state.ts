@@ -3,7 +3,7 @@ import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
 import { PokeAPI } from "./pokeapi.js";
-
+import { commandMapb } from "./command_mapb.js";
 export type CLICommand = {
   name: string;
   description: string;
@@ -40,6 +40,11 @@ export function initState(): State {
       name: "map",
       description: "Displays the location map",
       callback: commandMap,
+    },
+    mapb: {
+      name: "mapb",
+      description: "Displays the previos location map",
+      callback: commandMapb,
     }
   };
   const pokeAPI = new PokeAPI();
