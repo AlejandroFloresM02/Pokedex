@@ -2,28 +2,19 @@
   "name": "pokedex",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlejandroFloresM02/Pokedex.git"
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/main.js",
+    "dev": "npx tsc && node dist/main.js",
+    "test": "vitest --run"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AlejandroFloresM02/Pokedex/issues"
-  },
-  "homepage": "https://github.com/AlejandroFloresM02/Pokedex#readme",
   "devDependencies": {
-    "@types/node": "^26.0.0",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
-  },
-  "type": "module",
-  "scripts": {
-    "test": "vitest --run",
-    "build": "npx tsc",
-    "start": "node dist/main.js",
-    "dev": "npx tsc && node dist/main.js"
+    "@types/node": "^22.9.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
   }
 }
