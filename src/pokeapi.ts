@@ -60,8 +60,7 @@ export class PokeAPI {
     }
   }
 }
-
-export type ShallowLocations = {
+  export type ShallowLocations = {
   count: number;
   next: string;
   previous: string;

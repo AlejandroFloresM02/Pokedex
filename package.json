@@ -13,8 +13,8 @@
   "keywords": [],
   "author": "",
   "devDependencies": {
-    "@types/node": "^22.9.1",
+    "@types/node": "^22.20.1",
     "typescript": "^5.6.3",
-    "vitest": "^2.1.8"
+    "vitest": "^4.1.10"
   }
 }
