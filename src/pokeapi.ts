@@ -13,12 +13,6 @@ export class PokeAPI {
     this.cache.stopReapLoop();
   }
 
-
-/*private async fetchWithCache<T>(
-    url: string,
-
-  )*/
-
   async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
     const url = pageURL || `${PokeAPI.baseURL}/location-area`;
 
@@ -68,7 +62,7 @@ export class PokeAPI {
   }
 
   async fetchPokemon(pokemonName: string): Promise<Pokemon> {
-    const url = `${PokeAPI.baseURL}/pokemon/${pokemonName}}/`;
+    const url = `${PokeAPI.baseURL}/pokemon/${pokemonName}/`;
     const cached = this.cache.get<Pokemon>(url);
     if (cached) {
       return cached;
@@ -80,10 +74,11 @@ export class PokeAPI {
         throw new Error(`${resp.status} ${resp.statusText}`);
       }
       const pokemon: Pokemon = await resp.json();
-      this.cache.add(url, location);
+      this.cache.add(url, pokemon);
       return pokemon;
 
     } catch (e) {
+
       throw new Error(
         `Error fetching pokemon '${pokemonName}': ${(e as Error).message}`
       );
