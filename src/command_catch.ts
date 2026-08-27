@@ -1,22 +1,26 @@
-import { State } from "./state.js";
+import type { State } from "./state.js";
 
 export async function commandCatch(state: State, ...args: string[]) {
   if (args.length !== 1) {
-    throw new Error("you must provide a Pokemon name to catch");
+    throw new Error("you must provide a pokemon name");
   }
+
   const name = args[0];
   const pokemon = await state.pokeAPI.fetchPokemon(name);
 
-  const K = 25;
+  console.log(`Throwing a Pokeball at ${pokemon.name}...`);
 
-  const experience = Math.max(pokemon.base_experience ?? 1, 1);
-  const caugthChance = K / experience;
-  console.log(`Throwing a Pokeball at ${name}...`);
+  if (pokemon.base_experience === null) {
+      throw new Error(`${pokemon.name} does not have a base experience value`);
+    }
 
-  if (Math.random() > caugthChance) {
+  const res = Math.floor(Math.random() * pokemon.base_experience);
+  if (res > 40) {
     console.log(`${pokemon.name} escaped!`);
     return;
   }
+
   console.log(`${pokemon.name} was caught!`);
-  state.pokedex[name] = pokemon;
+  console.log("You may now inspect it with the inspect command.");
+  state.caughtPokemon[pokemon.name] = pokemon;
 }
